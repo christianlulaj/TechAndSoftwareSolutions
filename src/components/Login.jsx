@@ -1,21 +1,30 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from "axios"; // uimport axios
 
-const CreateAccountPage = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleCreateAccount = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    // Handle create account logic here
-    console.log('Creating account with:', { email, password });
+    axios.post('http://localhost:8081/login', { email, password })
+      .then(res => {
+        console.log('Login successful:', res.data.message);
+
+      })
+      .catch(err => {
+        console.error('Login failed:', err.response ? err.response.data.message : err.message);
+        // Optionally display an error message to the user
+      });
   };
+ 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full mt-10">
-        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Create Account</h2>
-        <form onSubmit={handleCreateAccount}>
+      <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
+        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Login</h2>
+        <form onSubmit={handleLogin}>
           <div className="mb-6">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
             <input
@@ -40,15 +49,15 @@ const CreateAccountPage = () => {
               required
             />
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline mb-4"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline"
             >
-              Create Account
+              Sign in
             </button>
-            <NavLink to="/" className="text-sm text-indigo-600 hover:text-indigo-800">
-              Already have an account? Login
+            <NavLink to="/create-account" className="text-sm text-indigo-600 hover:text-indigo-800">
+              Create account
             </NavLink>
           </div>
         </form>
@@ -57,4 +66,4 @@ const CreateAccountPage = () => {
   );
 };
 
-export default CreateAccountPage;
+export default LoginPage;

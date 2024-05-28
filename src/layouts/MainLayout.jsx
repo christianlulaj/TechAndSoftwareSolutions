@@ -5,11 +5,12 @@ import Navbar from '../components/Navbar';
 
 const MainLayout = () => {
   return (
-    <>
+    <div className="mt-20"> {/* Add top margin */}
       <Navbar />
       <Outlet />
       <ToastContainer />
-    </>
+    </div>
   );
 };
+
 export default MainLayout;
