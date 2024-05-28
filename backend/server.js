@@ -2,18 +2,17 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 app.use(cors());
 
 // Database connection example
 const db = mysql.createConnection({
-    host     : "tech-solutions-db.cjm8sy0uanhp.us-east-2.rds.amazonaws.com",
-    user     : "christian_lulaj",
-    password : "Alienware!586",
-    database : "tech-solutions-db",
-    port : 3306
-  
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME
 });
   
  
