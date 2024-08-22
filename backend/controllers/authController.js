@@ -10,6 +10,7 @@ const authController = {
         
         User.findByEmail(email, (err, data) => {
             if (err) return res.status(500).json(err);
+            console.log(data);
             if (data.length > 0 && data[0].password === hashedPassword) {
                 return res.json({ message: 'Login successful' });
             } else {
@@ -17,7 +18,7 @@ const authController = {
             }
         });
     },
-
+ 
     register: async (req, res) => {
         const { email, password } = req.body;
         if (!email || !password) return res.status(400).json({ error: 'Email and password are required' });
