@@ -7,13 +7,7 @@ const cors = require('cors');
 require('dotenv').config();
 const app = express();
 
-// Allow requests from your frontend
-const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
-  
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
 // Database connection example 
 const db = mysql.createConnection({
