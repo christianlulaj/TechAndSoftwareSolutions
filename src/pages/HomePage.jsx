@@ -1,11 +1,10 @@
-import CreateAccountPage from "./CreateAccountPage";
-
-
+import Login from "../components/Login"
 const HomePage = () => {
   return (
     <>
-      <CreateAccountPage />
+      <Login />
     </>
-  );
-};
-export default HomePage;
+  )
+}
+
+export default HomePage

@@ -1,5 +1,6 @@
 const CheckOutPage = () => {
   return (
+    
     <div>CheckOut Page</div>
   )
 }

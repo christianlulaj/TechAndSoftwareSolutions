@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:8081",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +12,9 @@
     "server": "json-server --watch src/jobs.json --port 8000"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
+    "axios": "^1.7.2",
+    "mdb-react-ui-kit": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
@@ -33,7 +37,6 @@
     "vite": "^5.2.11"
   },
   "rules": {
-  "react/prop-types": "off"
-}
-
+    "react/prop-types": "off"
+  }
 }
