@@ -12,13 +12,10 @@ const LoginPage = () => {
     e.preventDefault();
     axios.post('http://localhost:8081/login', { email, password })
       .then(res => {
-        console.log('Login successful:', res.data.message);
         setLoginMessage('Login successful! Redirecting...');
         setMessageType('success'); // Set message type to success
-        // Optional: Redirect user or perform other actions here
       })
       .catch(err => {
-        console.error('Login failed:', err.response ? err.response.data.message : err.message);
         setLoginMessage('Login failed. Please check your credentials and try again.');
         setMessageType('error'); // Set message type to error
       });

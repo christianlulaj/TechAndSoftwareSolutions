@@ -1,14 +1,38 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 const CreateAccountPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
+  const [statusType, setStatusType] = useState(''); // 'success' or 'error'
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
-    // Handle create account logic here
-    console.log('Creating account with:', { email, password });
+    axios.post('http://localhost:8081/register', { email, password })
+      .then(res => {
+        console.log(res.data);
+        setStatusMessage('Account created successfully!');
+        setStatusType('success');
+      })
+      .catch(err => {
+        if (err.response) {
+          if (err.response.status === 409) {
+            setStatusMessage('An account with this email already exists.');
+            setStatusType('error');
+          } else if (err.response.status === 400) {
+            setStatusMessage('Email and password are required.');
+            setStatusType('error');
+          } else {
+            setStatusMessage('Something went wrong. Please try again.');
+            setStatusType('error');
+          }
+        } else {
+          setStatusMessage('Could not connect to the server.');
+          setStatusType('error');
+        }
+      });
   };
 
   return (
@@ -52,6 +76,11 @@ const CreateAccountPage = () => {
             </NavLink>
           </div>
         </form>
+        {statusMessage && (
+          <div className={`mt-6 text-center text-sm ${statusType === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+            {statusMessage}
+          </div>
+        )}
       </div>
     </div>
   );
