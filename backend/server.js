@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login-info', (req, res) => {
-    const sql = "SELECT * from Users;";
+    const sql = "SELECT * from users;";
     db.query(sql, (err, data) => {
         if (err) return res.json(err);
         return res.json(data);
@@ -42,7 +42,7 @@ app.get('/login-info', (req, res) => {
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-    const sql = "SELECT * FROM Users WHERE email = ? AND password = ?";
+    const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
   
     db.query(sql, [email, hashedPassword], (err, data) => {
       if (err) {
