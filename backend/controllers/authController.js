@@ -15,7 +15,7 @@ const authController = {
                   if (err) return res.status(500).json(err);
   
                   if (isMatch) {
-                      return res.json({ message: 'Login successful' });
+                      return res.json({ message: 'Login successful!' });
                   } else {
                       return res.status(401).json({ message: 'Invalid email or password' });
                   }
