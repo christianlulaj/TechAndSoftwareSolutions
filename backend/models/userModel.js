@@ -6,9 +6,9 @@ const User = {
         db.query(sql, [email], callback);
     },
     
-    create: (email, hashedPassword, callback) => {
-        const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
-        db.query(sql, [email, hashedPassword], callback);
+    create: (email, password, first_name, last_name, city, street_address, zipcode, phone_number, state, callback) => {
+        const sql = 'INSERT INTO users (email, password, first_name, last_name, city, street_address, zipcode, phone_number, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(sql, [email, password, first_name, last_name, city, street_address, zipcode, phone_number, state], callback);
     }
 };
 
