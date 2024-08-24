@@ -24,7 +24,7 @@ const CreateAccountPage = () => {
       return;
     }
 
-    axios.post('http://localhost:8081/register', {
+    axios.post('https://techandsoftwaresolutions-production.up.railway.app/register', {
       firstName,
       lastName,
       street,

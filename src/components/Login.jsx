@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8081/login', { email, password })
+    axios.post('https://techandsoftwaresolutions-production.up.railway.app/login', { email, password })
       .then(res => {
         setLoginMessage('Login successful! Redirecting...');
         setMessageType('success'); // Set message type to success
